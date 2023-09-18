@@ -14,6 +14,7 @@ Scenario('registration on new OF',  ({ I }) => {
     orderformSteps.checkOwnerDomain(domain)
     orderformSteps.registrateOF(firstname, email)
     I.waitForElement(orderformPages.purchaseButton, 80)
+
     I.see( `Ви оформляєте замовлення як ${email}` , orderformPages.completeText );
 
 });
