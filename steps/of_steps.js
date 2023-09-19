@@ -1,5 +1,6 @@
 const I = actor();
 const orderFormPage = require('../pages/of_pages_names');
+const orderformPages = require("../pages/of_pages_names");
 
 module.exports = {
 
@@ -7,24 +8,29 @@ module.exports = {
         I.amOnPage(page)
     },
     checkOwnerDomain(domain){
-        I.waitForVisible(orderFormPage.domainField, 15)
-        I.click({xpath: '//*[@id="app"]/div[1]/main/div/div/div[1]/section/div[1]/div[2]/div/div/div[1]/div[1]/div/div[1]/div/div[2]/label'});
-        I.click({xpath: '//*[@id="app"]/div[1]/main/div/div/div[1]/section/div[1]/div[2]/div/div/div[1]/div[2]/div/div[1]/div/div[2]/label/div'});
+        I.waitForVisible(orderFormPage.iHaveDomainButton, 10)
+        I.click(orderFormPage.iHaveDomainButton);
+        I.click(orderFormPage.iRouteDomain);
         I.fillField(orderFormPage.domainField, domain);
-        I.click({xpath : '//*[@id="app"]/div[1]/main/div/div/div[1]/section/div[1]/div[2]/div/div/div[2]/form/button/span'})
+        I.click(orderFormPage.domainNameButton)
     },
     registrateOF(firstname, email){
+        I.waitForVisible(orderFormPage.inputName, 10)
         I.fillField(orderFormPage.inputName, firstname);
         I.fillField(orderFormPage.inputEmail, email);
-        I.waitForElement({xpath:'//*[@id="app"]/div[1]/main/div/div/div[1]/section/div[2]/div[2]/div[1]/div[2]/div[2]/button'}, 60);
-        I.click({xpath:'//*[@id="app"]/div[1]/main/div/div/div[1]/section/div[2]/div[2]/div[1]/div[2]/div[2]/button'});
+        I.waitForElement(orderFormPage.loginContinueButton, 60);
+        I.click(orderFormPage.loginContinueButton);
     },
     loginOF(email, password){
+        I.waitForVisible(orderFormPage.signInButton, 10)
+        I.click(orderformPages.signInButton);
         I.waitForElement(orderFormPage.inputLoginEmail, 40);
         I.fillField(orderFormPage.inputLoginEmail, email);
         I.fillField(orderFormPage.inputPass, password);
-        //I.waitForElement({xpath:'//*[@id="app"]/div[2]/main/div/div/div[1]/section/div[2]/div[2]/div[1]/form/div[2]/div[1]/button'}, 60);
-        I.click({xpath:'//*[@id="app"]/div[1]/main/div/div/div[1]/section/div[2]/div[2]/div[1]/form/div[2]/div[1]/button'});
-
+        I.click(orderFormPage.loginContinueButton);
+    },
+    continueOF(email){
+        I.waitForElement(orderformPages.purchaseButton, 80)
+        I.see( `${email}` , orderformPages.completeText );
     }
 }

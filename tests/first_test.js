@@ -13,8 +13,7 @@ Scenario('registration on new OF',  ({ I }) => {
     orderformSteps.openPage(orderformPages.stPage)
     orderformSteps.checkOwnerDomain(domain)
     orderformSteps.registrateOF(firstname, email)
-    I.waitForElement(orderformPages.purchaseButton, 80)
-    I.see( `Ви оформляєте замовлення як ${email}` , orderformPages.completeText );
+    orderformSteps.continueOF(email)
 
 });
 
@@ -26,10 +25,6 @@ Scenario('login on new OF', ({I}) => {
 
     orderformSteps.openPage(orderformPages.stPage)
     orderformSteps.checkOwnerDomain(domain)
-
-    I.click(orderformPages.loginButton);
-
     orderformSteps.loginOF(email, password)
-    I.waitForElement(orderformPages.purchaseButton, 80)
-    I.see( `Ви оформляєте замовлення як ${email}` , orderformPages.completeText );
+    orderformSteps.continueOF(email)
 })
