@@ -18,5 +18,5 @@ module.exports={
     domainNameButton : '//button[@type="button" and @class="v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default primary"]',
     loginContinueButton : '//button[@type="button" and @class="v-btn v-btn--is-elevated v-btn--has-bg theme--dark v-size--default primary"]',
     signInButton : '//*[@data-attr="sign-in"]',
-    //loginButton : '//button[@type="button" and @class="v-btn v-btn--is-elevated v-btn--has-bg theme--dark v-size--default primary"]',
+
 }
