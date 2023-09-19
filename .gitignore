@@ -1,12 +1,3 @@
-build/
-.allure/
-.gradle/
-.idea/
-target/
-Report/
-screenshot/
-*.log
-*.properties
 /output/
 node_modules/
-.idea/*
+
