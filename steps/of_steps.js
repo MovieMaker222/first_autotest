@@ -15,14 +15,14 @@ module.exports = {
         I.click(orderFormPage.domainNameButton)
     },
     registrateOF(firstname, email){
-        I.waitForVisible(orderFormPage.inputName, 10)
+        I.waitForVisible(orderFormPage.inputName, 30)
         I.fillField(orderFormPage.inputName, firstname);
         I.fillField(orderFormPage.inputEmail, email);
         I.waitForElement(orderFormPage.loginContinueButton, 60);
         I.click(orderFormPage.loginContinueButton);
     },
     loginOF(email, password){
-        I.waitForVisible(orderFormPage.signInButton, 10)
+        I.waitForVisible(orderFormPage.signInButton, 30)
         I.click(orderformPages.signInButton);
         I.waitForElement(orderFormPage.inputLoginEmail, 40);
         I.fillField(orderFormPage.inputLoginEmail, email);
@@ -32,5 +32,11 @@ module.exports = {
     continueOF(email){
         I.waitForElement(orderformPages.purchaseButton, 80)
         I.see( `${email}` , orderformPages.completeText );
+    },
+    errorOF(){
+        I.see(orderFormPage.errorLoginMessage);
+    },
+    visiblePurchaseButton(){
+        I.waitForElementVisible(orderformPages.purchaseButton, 15)
     }
 }
