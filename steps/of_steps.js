@@ -1,7 +1,6 @@
 const I = actor();
 const orderFormPage = require('../pages/of_pages_names');
 const orderformPages = require("../pages/of_pages_names");
-const  orderformSteps = require("../steps/of_steps");
 
 module.exports = {
 
@@ -33,22 +32,6 @@ module.exports = {
     continueOF(email){
         I.waitForElement(orderformPages.purchaseButton, 80)
         I.see( `${email}` , orderformPages.completeText );
-    },
-    errorOF(){
-        I.see(orderFormPage.errorLoginMessage);
-    },
-    visiblePurchaseButton(){
-        I.waitForElementVisible(orderformPages.purchaseButton, 15)
-    },
-    chooseErrorMessage(email){
-        if(email.includes('@mail.ru')){
-            let message = ' ';
-            message = orderFormPage.errorRussianMessage;
-        }
-        else {
-            let message = ' ';
-            message = orderFormPage.errorFailedMessage;
-        }
     },
     negativeReg(firstname,email, message){
         I.waitForVisible(orderFormPage.inputName, 30);
