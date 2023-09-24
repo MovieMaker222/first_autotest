@@ -1,6 +1,7 @@
 const I = actor();
 const orderFormPage = require('../pages/of_pages_names');
 const orderformPages = require("../pages/of_pages_names");
+const  orderformSteps = require("../steps/of_steps");
 
 module.exports = {
 
@@ -15,7 +16,7 @@ module.exports = {
         I.click(orderFormPage.domainNameButton)
     },
     registrateOF(firstname, email){
-        I.waitForVisible(orderFormPage.inputName, 30)
+        I.waitForVisible(orderFormPage.inputName, 30);
         I.fillField(orderFormPage.inputName, firstname);
         I.fillField(orderFormPage.inputEmail, email);
         I.waitForElement(orderFormPage.loginContinueButton, 60);
@@ -38,5 +39,25 @@ module.exports = {
     },
     visiblePurchaseButton(){
         I.waitForElementVisible(orderformPages.purchaseButton, 15)
-    }
+    },
+    chooseErrorMessage(email){
+        if(email.includes('@mail.ru')){
+            let message = ' ';
+            message = orderFormPage.errorRussianMessage;
+        }
+        else {
+            let message = ' ';
+            message = orderFormPage.errorFailedMessage;
+        }
+    },
+    negativeReg(firstname,email, message){
+        I.waitForVisible(orderFormPage.inputName, 30);
+        I.fillField(orderFormPage.inputName, firstname);
+        I.fillField(orderFormPage.inputEmail, email);
+        I.waitForElement(orderFormPage.loginContinueButton, 60);
+        I.click(orderFormPage.loginContinueButton);
+        I.waitForElement(orderFormPage.errorLoginMessage, 60);
+        I.see(message, orderFormPage.errorLoginMessage)
+
+    },
 }
