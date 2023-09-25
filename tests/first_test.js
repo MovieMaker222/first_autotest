@@ -2,7 +2,6 @@ Feature('etc');
 const { devices } = require('playwright');
 const orderformSteps =require('../steps/of_steps');
 const orderformPages = require("../pages/of_pages_names");
-const orderFormPage = require("../pages/of_pages_names");
 const { I } = inject();
 
 Scenario('registration on new OF',  ({ I }) => {
@@ -40,10 +39,10 @@ Data(accounts).Scenario('Negative register on new OF', ({I , current}) => {
     orderformSteps.openPage((orderformPages.stPage))
     orderformSteps.checkOwnerDomain(domain)
     if(email.includes('@mail.ru')){
-        message = orderFormPage.errorRussianMessage;
+        message = orderformPages.errorRussianMessage;
     }
     else {
-        message = orderFormPage.errorFailedMessage;
+        message = orderformPages.errorFailedMessage;
     }
     orderformSteps.negativeReg(current.firstname, current.email, message)
 
